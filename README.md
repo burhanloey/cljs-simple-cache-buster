@@ -1,6 +1,6 @@
 # cljs-simple-cache-buster
 
-A simple cache buster for lein-cljsbuild. This plugin will append a timestamp fingerprint as a query string after the assets filename.
+A simple cache buster for [lein-cljsbuild](https://github.com/emezeske/lein-cljsbuild). This plugin will append a timestamp fingerprint as a query string after the assets filename.
 
 For a more sophisticated cache busting solution, check out [Optimus](https://github.com/magnars/optimus).
 
