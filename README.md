@@ -1,25 +1,42 @@
 # cljs-simple-cache-buster
 
-A Leiningen plugin to do many wonderful things.
+A simple cache buster for lein-cljsbuild. This plugin will append a timestamp fingerprint as a query string after the assets filename.
 
-## Usage
+For a more sophisticated cache busting solution, check out [Optimus](https://github.com/magnars/optimus).
 
-FIXME: Use this for user-level plugins:
+## Setup
 
-Put `[cljs-simple-cache-buster "0.1.0-SNAPSHOT"]` into the `:plugins` vector of your `:user`
-profile.
+via Leiningen:
 
-FIXME: Use this for project-level plugins:
+    :plugins [cljs-simple-cache-buster "0.1.0"]
 
-Put `[cljs-simple-cache-buster "0.1.0-SNAPSHOT"]` into the `:plugins` vector of your project.clj.
+## Configurations
 
-FIXME: and add an example usage that actually makes sense:
+You can supply the configuration inside a `:cljs-simple-cache-buster` map like so:
 
-    $ lein cljs-simple-cache-buster
+```
+:cljs-simple-cache-buster {:cljsbuild-id "min"
+                           :template-file "resources/template/index.html"
+                           :output-to "resources/public/index.html"}
+```
+
+## Template file
+
+The plugin will use the template file to find the location to put the fingerprint. Append `{{ fingerprint }}` as the query string for the assets path, for example:
+
+    <script type="text/javascript" src="js/compiled/myapp.js?{{ fingerprint }}"></script>
+
+and
+
+    <link href="css/style.css?{{ fingerprint }}" rel="stylesheet" type="text/css">
+
+## Fingerprint method
+
+The fingerprint uses the timestamp the moment you compile your ClojureScript app using `lein-cljsbuild`.
 
 ## License
 
-Copyright © 2016 FIXME
+Copyright © 2016 Burhanuddin Baharuddin
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
