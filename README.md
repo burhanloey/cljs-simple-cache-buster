@@ -8,17 +8,19 @@ For a more sophisticated cache busting solution, check out [Optimus](https://git
 
 via Leiningen:
 
-    :plugins [[cljs-simple-cache-buster "0.1.0"]]
+    :plugins [[cljs-simple-cache-buster "0.1.1"]]
 
 ## Configurations
 
 You can supply the configuration inside a `:cljs-simple-cache-buster` map like so:
 
 ```
-:cljs-simple-cache-buster {:cljsbuild-id "min"
+:cljs-simple-cache-buster {:cljsbuild-id ["min"]
                            :template-file "resources/template/index.html"
                            :output-to "resources/public/index.html"}
 ```
+
+Note that `:cljsbuild-id` must be a vector which means you can target more than one id.
 
 ## Template file
 

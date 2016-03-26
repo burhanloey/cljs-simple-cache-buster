@@ -1,4 +1,4 @@
-(defproject cljs-simple-cache-buster "0.1.0"
+(defproject cljs-simple-cache-buster "0.1.1"
   :description "A simple cache buster for lein-cljsbuild"
   :url "http://github.com/burhanloey/cljs-simple-cache-buster"
   :license {:name "Eclipse Public License"
