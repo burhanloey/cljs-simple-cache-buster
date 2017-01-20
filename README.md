@@ -26,11 +26,11 @@ Note that `:cljsbuild-id` must be a vector which means you can target more than 
 
 The plugin will use the template file to find the location to put the fingerprint. Append `{{ fingerprint }}` as the query string for the assets path, for example:
 
-    <script type="text/javascript" src="js/compiled/myapp.js?{{ fingerprint }}"></script>
+    <script type="text/javascript" src="js/compiled/myapp.js?v={{ fingerprint }}"></script>
 
 and
 
-    <link href="css/style.css?{{ fingerprint }}" rel="stylesheet" type="text/css">
+    <link href="css/style.css?v={{ fingerprint }}" rel="stylesheet" type="text/css">
 
 ## Fingerprint method
 
