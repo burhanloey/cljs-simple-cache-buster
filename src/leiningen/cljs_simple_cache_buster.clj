@@ -2,23 +2,27 @@
   (:require [selmer.parser :as selmer]
             [clj-time.core :as t]
             [clj-time.coerce :as c]
+            [clojure.java.io :as io]
             [leiningen.core.main :as lmain]
             [leiningen.compile :as lcompile]
             [robert.hooke :as hooke]))
 
-(defn- busting [project]
-  (let [template-file (get-in project [:cljs-simple-cache-buster :template-file])
-        output-file   (get-in project [:cljs-simple-cache-buster :output-to])
-        fingerprint   (str (c/to-long (t/now)))]
-    (clojure.java.io/make-parents output-file)
+(defn- busting [{config :cljs-simple-cache-buster :as project}]
+  (let [template-files (flatten (vector (:template-file config)))
+        output-files   (flatten (vector (:output-to config)))
+        fingerprint    (str (c/to-long (t/now)))]
     (selmer/set-resource-path! (:root project))
-    (spit output-file (selmer/render-file template-file {:fingerprint fingerprint}))
+    (doseq [[in-file out-file] (map vector template-files output-files)]
+      (io/make-parents out-file)
+      (->> {:fingerprint fingerprint}
+           (selmer/render-file in-file)
+           (spit out-file)))
     (lmain/info "Template fingerprinted with" fingerprint)))
 
 (defn cljs-simple-cache-buster
   "Run simple cache buster"
-  [project & args]
-  (let [cljsbuild-id (get-in project [:cljs-simple-cache-buster :cljsbuild-id])]
+  [{config :cljs-simple-cache-buster :as project} & args]
+  (let [cljsbuild-id (flatten (vector (:cljsbuild-id config)))]
     (when (and (seq args)
                (= (count args) 2)
                (= (first args) "once")
