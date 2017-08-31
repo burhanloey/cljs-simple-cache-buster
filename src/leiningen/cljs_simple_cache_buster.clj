@@ -10,7 +10,8 @@
 (defn- busting [{config :cljs-simple-cache-buster :as project}]
   (let [template-files (flatten (vector (:template-file config)))
         output-files   (flatten (vector (:output-to config)))
-        fingerprint    (str (c/to-long (t/now)))]
+        fingerprint    (or (:fingerprint config)
+                           (str (c/to-long (t/now))))]
     (selmer/set-resource-path! (:root project))
     (doseq [[in-file out-file] (map vector template-files output-files)]
       (io/make-parents out-file)
