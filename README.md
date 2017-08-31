@@ -15,7 +15,7 @@ via Leiningen:
 You can supply the configuration inside a `:cljs-simple-cache-buster` map like so:
 
 ```
-:cljs-simple-cache-buster {:cljsbuild-id ["min"]
+:cljs-simple-cache-buster {:cljsbuild-id "min"
                            :template-file "resources/template/index.html"
                            :output-to "resources/public/index.html"}
 ```
