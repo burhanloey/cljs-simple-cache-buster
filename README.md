@@ -8,7 +8,7 @@ For a more sophisticated cache busting solution, check out [Optimus](https://git
 
 via Leiningen:
 
-    :plugins [[cljs-simple-cache-buster "0.2.0"]]
+    :plugins [[cljs-simple-cache-buster "0.2.1"]]
 
 ## Configurations
 
