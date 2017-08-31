@@ -42,7 +42,7 @@ and
 
 ## Fingerprint method
 
-The fingerprint uses the timestamp the moment you compile your ClojureScript app using `lein-cljsbuild`.
+By default, the fingerprint uses the timestamp the moment you compile your ClojureScript app using `lein-cljsbuild`. To supply your own custom value, supply the string value to `:fingerprint` option in the configuration.
 
 ## License
 
