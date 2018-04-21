@@ -1,5 +1,8 @@
 # cljs-simple-cache-buster
 
+> DEPRECATED This plugin will be deprecated for Leiningen 2.8+ since from that version, Leiningen will deprecate hooks.
+> Read more here: [Leiningen 2.8 Update Notes](https://github.com/technomancy/leiningen/releases/tag/2.8.0-RC1)
+
 A simple cache buster for [lein-cljsbuild](https://github.com/emezeske/lein-cljsbuild). This plugin will append a timestamp fingerprint as a query string after the assets filename.
 
 For a more sophisticated cache busting solution, check out [Optimus](https://github.com/magnars/optimus).
